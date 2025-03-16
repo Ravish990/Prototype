@@ -61,10 +61,3 @@ The WebUI will need to represent:
 - Proper permissions handling
 - Safe data serialization
 
-## Timeline
-- Week 1-2: Basic infrastructure setup
-- Week 3-4: Core visualization implementation
-- Week 5-6: Group and selection visualization
-- Week 7-8: Session restore integration
-- Week 9-10: Testing and refinement
-- Week 11-12: Documentation and cleanup
