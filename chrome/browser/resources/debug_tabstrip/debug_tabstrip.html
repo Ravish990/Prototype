@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Tabstrip Debug View</title>
+  <link rel="stylesheet" href="chrome://resources/css/text_defaults_md.css">
+  <style>
+    body {
+      padding: 20px;
+      font-family: 'Segoe UI', system-ui, sans-serif;
+      color: #333;
+    }
+    
+    h1 {
+      color: #1a73e8;
+      margin-bottom: 30px;
+    }
+    
+    .section {
+      background: white;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+      margin-bottom: 24px;
+      padding: 16px;
+    }
+    
+    .section h2 {
+      color: #3c4043;
+      font-size: 18px;
+      margin-top: 0;
+    }
+
+    /* Tab Tree Styles */
+    .tab-list {
+      list-style: none;
+      padding: 0;
+      margin: 10px 0;
+    }
+    
+    .tab-item {
+      border: 1px solid #e0e0e0;
+      border-radius: 4px;
+      margin: 8px 0;
+      padding: 12px;
+    }
+    
+    .tab-item.active {
+      border-color: #1a73e8;
+      background: #f8f9fe;
+    }
+    
+    .tab-item.pinned {
+      border-left: 4px solid #1a73e8;
+    }
+    
+    .tab-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .tab-url {
+      color: #5f6368;
+      font-size: 12px;
+      margin-bottom: 8px;
+    }
+    
+    .tab-meta {
+      color: #80868b;
+      font-size: 11px;
+    }
+
+    /* Group Styles */
+    .group-list {
+      margin-top: 12px;
+    }
+    
+    .group-item {
+      border-radius: 4px;
+      margin: 8px 0;
+      padding: 12px;
+      background: #f8f9fe;
+    }
+    
+    .group-header {
+      font-weight: 500;
+      margin-bottom: 8px;
+    }
+    
+    .group-title {
+      color: #3c4043;
+    }
+    
+    .group-id {
+      color: #80868b;
+      font-size: 12px;
+      margin-left: 8px;
+    }
+    
+    .group-tabs {
+      font-size: 13px;
+      color: #5f6368;
+    }
+
+    /* Selection Styles */
+    .selection-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .selection-item {
+      background: #f8f9fe;
+      border-radius: 4px;
+      margin: 8px 0;
+      padding: 12px;
+    }
+    
+    .selection-item.active {
+      background: #e8f0fe;
+    }
+    
+    .selection-title {
+      font-weight: 500;
+      margin-bottom: 4px;
+    }
+    
+    .selection-meta {
+      color: #80868b;
+      font-size: 12px;
+    }
+
+    /* Session Styles */
+    .session-list {
+      list-style: none;
+      padding: 0;
+    }
+    
+    .session-item {
+      border-left: 3px solid #4caf50;
+      margin: 8px 0;
+      padding: 8px 12px;
+    }
+    
+    .session-id {
+      font-family: monospace;
+      color: #5f6368;
+    }
+  </style>
+</head>
+<body>
+  <h1>Tabstrip Debug View</h1>
+  
+  <div class="section">
+    <h2>Tabstrip Model Tree</h2>
+    <div id="tabstrip-tree"></div>
+  </div>
+  
+  <div class="section">
+    <h2>Group Information</h2>
+    <div id="group-info"></div>
+  </div>
+  
+  <div class="section">
+    <h2>Selection Model</h2>
+    <div id="selection-model"></div>
+  </div>
+  
+  <div class="section">
+    <h2>Session Information</h2>
+    <div id="session-info"></div>
+  </div>
+
+  <script type="module" src="debug_tabstrip.js"></script>
+</body>
+</html>

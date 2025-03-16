@@ -1,0 +1,23 @@
+// Copyright 2024 The Chromium Authors
+// Use of this source code is governed by a BSD-style license that can be found
+// in the LICENSE file.
+
+module debug_tabstrip.mojom;
+
+// Interface for debug tabstrip IPC communication
+interface DebugTabstripHandler {
+  // Initialize the debug tabstrip
+  Initialize() => (bool success);
+  
+  // Get tab strip state
+  GetTabStripState() => (dict<string, any> state);
+  
+  // Get group state
+  GetGroupState() => (dict<string, any> state);
+  
+  // Get selection state
+  GetSelectionState() => (dict<string, any> state);
+  
+  // Get session state
+  GetSessionState() => (dict<string, any> state);
+};

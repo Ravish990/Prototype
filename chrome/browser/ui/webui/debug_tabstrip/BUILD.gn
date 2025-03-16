@@ -1,0 +1,49 @@
+import("//tools/grit/grit_rule.gni")
+import("//tools/grit/preprocess_if_expr.gni")
+import("//ui/webui/resources/tools/generate_grd.gni")
+
+generate_grd("build_grd") {
+  grd_prefix = "debug_tabstrip"
+  out_grd = "$target_gen_dir/resources.grd"
+  
+  input_files = [
+    "debug_tabstrip.html",
+    "debug_tabstrip.js",
+  ]
+  input_files_base_dir = "."
+  resource_path_prefix = "debug_tabstrip"
+}
+
+grit("resources") {
+  source = "$target_gen_dir/resources.grd"
+  outputs = [
+    "grit/debug_tabstrip_resources.h",
+    "grit/debug_tabstrip_resources_map.cc",
+    "grit/debug_tabstrip_resources_map.h",
+    "debug_tabstrip_resources.pak",
+  ]
+  deps = [ ":build_grd" ]
+}
+
+source_set("debug_tabstrip") {
+  sources = [
+    "debug_tabstrip_ui.cc",
+    "debug_tabstrip_ui.h",
+    "debug_tabstrip_handler.cc",
+    "debug_tabstrip_handler.h",
+    "debug_tabstrip_visualizer.cc",
+    "debug_tabstrip_visualizer.h",
+  ]
+  
+  deps = [
+    ":resources",
+    "//base",
+    "//chrome/browser/ui",
+    "//chrome/common",
+    "//components/sessions",
+    "//components/tab_groups",
+    "//content/public/browser",
+    "//ui/base/webui",
+    "//ui/webui",
+  ]
+}

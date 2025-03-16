@@ -1,0 +1,5 @@
+include_rules = [
+  "+chrome/browser/ui/webui",
+  "+components/sessions",
+  "+components/tab_groups",
+]
