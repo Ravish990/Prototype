@@ -25,7 +25,7 @@ class DebugTabstripHandler : public content::WebUIMessageHandler,
       TabStripModel* tab_strip_model,
       const TabStripModelChange& change,
       const TabStripSelectionChange& selection) override;
-  void TabGroupChanged(const tab_groups::TabGroupId& group) override;
+  void TabGroupChanged(const tab_groups::TabGroupId& group);
 
  private:
   // Handler for the 'initialize' message from JavaScript.

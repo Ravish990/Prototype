@@ -6,7 +6,7 @@
 #include "chrome/browser/ui/tabs/tab_strip_model_observer.h"
 #include "components/sessions/core/session_id.h"
 #include "components/tab_groups/tab_group_id.h"
-#include "components/sessions/core/session_service.h"
+#include "components/sessions/session_service.h"
 
 // Helper class to build visualization data structures for the debug WebUI
 class DebugTabstripVisualizer {

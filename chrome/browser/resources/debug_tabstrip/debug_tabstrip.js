@@ -43,6 +43,12 @@ function updateTabstripTree(treeData) {
         Index: ${tab.index}
         ${tab.is_pinned ? '📌' : ''}
         ${tab.group_id ? `Group: ${tab.group_id}` : ''}
+        ${tab.is_discarded ? '💤' : ''}
+        ${tab.is_loading ? '🔄' : ''}
+        ${tab.has_audio ? '🔊' : ''}
+      </div>
+      <div class="tab-session">
+        Session ID: ${tab.session_id}
       </div>
     `;
     
@@ -73,13 +79,23 @@ function updateGroupInfo(groupData) {
     const colorClass = `group-color-${group.color}`;
     groupItem.classList.add(colorClass);
     
+    const collapsed = group.collapsed ? 'Collapsed' : 'Expanded';
+    const visible = group.visible ? 'Visible' : 'Hidden';
+    
     groupItem.innerHTML = `
       <div class="group-header">
         <span class="group-title">${group.title}</span>
         <span class="group-id">(${group.id})</span>
       </div>
+      <div class="group-info">
+        <div>State: ${collapsed} / ${visible}</div>
+        <div>Color: ${group.color}</div>
+      </div>
       <div class="group-tabs">
-        Tabs in group: ${group.tabs.join(', ')}
+        <div>Tabs in group:</div>
+        <ul>
+          ${group.tabs.map(tab => `<li>Index ${tab}: ${tab.title}</li>`).join('')}
+        </ul>
       </div>
     `;
     
@@ -143,7 +159,14 @@ function updateSessionInfo(sessionData) {
     sessionItem.className = 'session-item';
     
     sessionItem.innerHTML = `
-      <div class="session-id">Session ID: ${session.session_id}</div>
+      <div class="session-info">
+        <div class="session-id">Session ID: ${session.session_id}</div>
+        <div class="session-data">
+          <div>Tab Index: ${session.tab_index}</div>
+          <div>Window ID: ${session.window_id}</div>
+          <div>Last Active: ${new Date(session.last_active_time).toLocaleString()}</div>
+        </div>
+      </div>
     `;
     
     sessionList.appendChild(sessionItem);

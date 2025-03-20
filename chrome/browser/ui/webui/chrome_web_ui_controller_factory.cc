@@ -1,7 +1,17 @@
-// Add to existing WebUI bindings
+#include "chrome/browser/ui/webui/chrome_web_ui_controller_factory.h"
 #include "chrome/browser/ui/webui/debug_tabstrip/debug_tabstrip_ui.h"
 #include "chrome/common/url_constants.h"
+#include "content/public/browser/web_ui.h"
+#include "url/gurl.h"
 
-// In ChromeWebUIControllerFactory::CreateWebUIControllerForURL method:
-if (url.host_piece() == chrome::kChromeUIDebugTabstripHost)
-  return std::make_unique<DebugTabstripUI>(web_ui);
+std::unique_ptr<content::WebUIController>
+ChromeWebUIControllerFactory::CreateWebUIControllerForURL(
+    content::WebUI* web_ui,
+    const GURL& url) {
+      const GURL& url = request->url;
+      if (url.host() == chrome::kChromeUIDebugTabstripHost) {
+        return NewWebUI<DebugTabstripUI>(web_ui, url);
+      }
+      #ifdef
+  return nullptr;
+}

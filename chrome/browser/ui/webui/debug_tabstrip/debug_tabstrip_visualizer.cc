@@ -54,14 +54,6 @@ base::Value::Dict DebugTabstripVisualizer::BuildGroupState(TabStripModel* model)
   state.Set("groups", std::move(groups));
   return state;
   
-  for (int i = 0; i < model->count(); ++i) {
-    tab_groups::TabGroupId group_id = model->GetTabGroupForTab(i);
-    if (group_id != empty_group && 
-        !base::Contains(groups, BuildGroupData(model, group_id))) {
-      groups.Append(BuildGroupData(model, group_id));
-    }
-  }
-  
   state.Set("total_groups", static_cast<int>(groups.size()));
   state.Set("groups", std::move(groups));
   
@@ -109,11 +101,10 @@ base::Value::Dict DebugTabstripVisualizer::BuildSessionState(
   
   base::Value::List sessions;
   sessions.reserve(model->count());
-  base::Value::List sessions;
 
   for (int i = 0; i < model->count(); ++i) {
     sessions.Append(BuildSessionData(model, 
-        model->GetWebContentsAt(i)->GetSessionID()));
+        contents_cache[i]->GetSessionID()));
   }
 
   state.Set("session_count", static_cast<int>(sessions.size()));
