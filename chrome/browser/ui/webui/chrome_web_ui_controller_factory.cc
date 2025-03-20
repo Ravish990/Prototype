@@ -8,10 +8,10 @@ std::unique_ptr<content::WebUIController>
 ChromeWebUIControllerFactory::CreateWebUIControllerForURL(
     content::WebUI* web_ui,
     const GURL& url) {
-      const GURL& url = request->url;
-      if (url.host() == chrome::kChromeUIDebugTabstripHost) {
-        return NewWebUI<DebugTabstripUI>(web_ui, url);
-      }
-      #ifdef
+      #if BUILDFLAG(ENABLE_DEBUG_TABSTRIP)
+  if (web_ui_url.host_piece() == chrome::kChromeUIDebugTabstripHost)
+    return NewWebUI<DebugTabstripUI>(web_ui);
+#endif
+
   return nullptr;
 }
