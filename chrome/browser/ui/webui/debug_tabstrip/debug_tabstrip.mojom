@@ -1,23 +1,18 @@
-// Copyright 2024 The Chromium Authors
-// Use of this source code is governed by a BSD-style license that can be found
-// in the LICENSE file.
+// Copyright 2023 The Chromium Authors. All rights reserved.
+// Use of this source code is governed by a BSD-style license that can be
+// found in the LICENSE file.
 
 module debug_tabstrip.mojom;
 
-// Interface for debug tabstrip IPC communication
+// Client interface for receiving tab strip state updates.
+interface DebugTabstripHandlerClient {
+  // Called when tab strip state has been updated.
+  OnTabStripStateUpdated(dict data);
+};
+
+// Interface for the debug tabstrip handler.
 interface DebugTabstripHandler {
-  // Initialize the debug tabstrip
-  Initialize() => (bool success);
-  
-  // Get tab strip state
-  GetTabStripState() => (dict<string, any> state);
-  
-  // Get group state
-  GetGroupState() => (dict<string, any> state);
-  
-  // Get selection state
-  GetSelectionState() => (dict<string, any> state);
-  
-  // Get session state
-  GetSessionState() => (dict<string, any> state);
+  // Gets the current state of the tab strip.
+  // The callback will be called repeatedly with updated tab strip data.
+  GetTabStripState() => (pending_remote<DebugTabstripHandlerClient> client);
 };
